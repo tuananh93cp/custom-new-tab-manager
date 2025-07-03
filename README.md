@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Custom New Tab Manager
 
 A simple and elegant Chrome/Firefox extension that enhances your browsing experience with a beautiful customizable new tab page.
@@ -130,3 +131,6 @@ We welcome contributions! Please read our contribution guidelines and submit pul
 ---
 
 **Made with ❤️ by XMP - Enhancing your browsing experience while respecting your privacy.** 
+=======
+# custom-new-tab-manager
+>>>>>>> 9c1b6e4d89d07c5d506cd7d3f33bfe44030a4f3c
