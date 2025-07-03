@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Icons - Custom New Tab Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .icon-card {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .icon-preview {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto 1rem;
+            background: #667eea;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .icon-info h3 {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .icon-info p {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .generator-section {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .generator-title {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .canvas-container {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .icon-canvas {
+            border: 2px dashed #cbd5e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-canvas:hover {
+            border-color: #667eea;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-label {
+            font-size: 0.9rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .control-input {
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            width: 80px;
+            text-align: center;
+        }
+
+        .color-input {
+            width: 50px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .generate-btn {
+            background: #48bb78;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            background: #38a169;
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            color: #718096;
+        }
+
+        .info-section {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-title {
+            color: #234e52;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-text {
+            color: #285e61;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Extension Icons Download</h1>
+            <p class="subtitle">Download ready-to-use icons for Custom New Tab Manager extension</p>
+        </div>
+
+        <div class="info-section">
+            <div class="info-title">📋 Hướng dẫn sử dụng:</div>
+            <div class="info-text">
+                • Download các icon có sẵn bên dưới hoặc tạo icon tùy chỉnh<br>
+                • Đặt các file icon vào thư mục <code>icons/</code> trong extension<br>
+                • Icon cần có 3 kích thước: 16x16, 48x48, và 128x128 pixels<br>
+                • Định dạng PNG được khuyến nghị cho Chrome Web Store
+            </div>
+        </div>
+
+        <div class="generator-section">
+            <h2 class="generator-title">🎨 Tạo Icon Tùy Chỉnh</h2>
+            <div class="canvas-container">
+                <canvas id="iconCanvas" class="icon-canvas" width="128" height="128"></canvas>
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label class="control-label">Text</label>
+                    <input type="text" class="control-input" id="iconText" value="CNT" maxlength="3">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Background</label>
+                    <input type="color" class="color-input" id="bgColor" value="#667eea">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Text Color</label>
+                    <input type="color" class="color-input" id="textColor" value="#ffffff">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Size</label>
+                    <select class="control-input" id="iconSize">
+                        <option value="16">16x16</option>
+                        <option value="48">48x48</option>
+                        <option value="128" selected>128x128</option>
+                    </select>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="generate-btn" onclick="generateIcon()">Generate Icon</button>
+                <button class="generate-btn" onclick="downloadGeneratedIcon()">Download</button>
+            </div>
+        </div>
+
+        <div class="icons-grid">
+            <div class="icon-card">
+                <div class="icon-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    🗂️
+                </div>
+                <div class="icon-info">
+                    <h3>Tab Manager Icon Set</h3>
+                    <p>Complete set of 16x16, 48x48, and 128x128 icons with modern gradient design</p>
+                    <a href="#" class="download-btn" onclick="downloadIconSet('tab-manager')">Download Set</a>
+                </div>
+            </div>
+
+            <div class="icon-card">
+                <div class="icon-preview" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    ⚡
+                </div>
+                <div class="icon-info">
+                    <h3>Speed Icon Set</h3>
+                    <p>Lightning-themed icons emphasizing speed and efficiency</p>
+                    <a href="#" class="download-btn" onclick="downloadIconSet('speed')">Download Set</a>
+                </div>
+            </div>
+
+            <div class="icon-card">
+                <div class="icon-preview" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    🎨
+                </div>
+                <div class="icon-info">
+                    <h3>Creative Icon Set</h3>
+                    <p>Colorful and creative design perfect for customization tools</p>
+                    <a href="#" class="download-btn" onclick="downloadIconSet('creative')">Download Set</a>
+                </div>
+            </div>
+
+            <div class="icon-card">
+                <div class="icon-preview" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                    📱
+                </div>
+                <div class="icon-info">
+                    <h3>Modern Icon Set</h3>
+                    <p>Clean and modern design suitable for any browser extension</p>
+                    <a href="#" class="download-btn" onclick="downloadIconSet('modern')">Download Set</a>
+                </div>
+            </div>
+
+            <div class="icon-card">
+                <div class="icon-preview" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);">
+                    🔥
+                </div>
+                <div class="icon-info">
+                    <h3>Fire Icon Set</h3>
+                    <p>Dynamic fire-themed icons for high-energy applications</p>
+                    <a href="#" class="download-btn" onclick="downloadIconSet('fire')">Download Set</a>
+                </div>
+            </div>
+
+            <div class="icon-card">
+                <div class="icon-preview" style="background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);">
+                    💎
+                </div>
+                <div class="icon-info">
+                    <h3>Premium Icon Set</h3>
+                    <p>Premium diamond-themed icons with elegant design</p>
+                    <a href="#" class="download-btn" onclick="downloadIconSet('premium')">Download Set</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Created for Custom New Tab Manager Extension</p>
+            <p>By XMP - 2025 | <a href="mailto:lanhanh64529@gmail.com" style="color: #667eea;">lanhanh64529@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('iconCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function generateIcon() {
+            const text = document.getElementById('iconText').value || 'CNT';
+            const bgColor = document.getElementById('bgColor').value;
+            const textColor = document.getElementById('textColor').value;
+            const size = parseInt(document.getElementById('iconSize').value);
+
+            // Resize canvas
+            canvas.width = size;
+            canvas.height = size;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Draw background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, size, size);
+
+            // Draw text
+            ctx.fillStyle = textColor;
+            ctx.font = `bold ${size * 0.3}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, size / 2, size / 2);
+        }
+
+        function downloadGeneratedIcon() {
+            const link = document.createElement('a');
+            const size = document.getElementById('iconSize').value;
+            link.download = `icon${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function downloadIconSet(theme) {
+            // Create a zip file with all icon sizes
+            const iconData = generateIconsForTheme(theme);
+            
+            // For demo purposes, we'll download individual icons
+            ['16', '48', '128'].forEach(size => {
+                setTimeout(() => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = parseInt(size);
+                    canvas.height = parseInt(size);
+                    
+                    drawIconForTheme(ctx, theme, parseInt(size));
+                    
+                    const link = document.createElement('a');
+                    link.download = `icon${size}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                }, parseInt(size) * 10); // Stagger downloads
+            });
+        }
+
+        function drawIconForTheme(ctx, theme, size) {
+            const themes = {
+                'tab-manager': { bg: '#667eea', symbol: '🗂️' },
+                'speed': { bg: '#4facfe', symbol: '⚡' },
+                'creative': { bg: '#a8edea', symbol: '🎨' },
+                'modern': { bg: '#ffecd2', symbol: '📱' },
+                'fire': { bg: '#d299c2', symbol: '🔥' },
+                'premium': { bg: '#89f7fe', symbol: '💎' }
+            };
+
+            const themeData = themes[theme] || themes['tab-manager'];
+            
+            // Background
+            ctx.fillStyle = themeData.bg;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Symbol/Text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `${size * 0.4}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            if (theme === 'tab-manager') {
+                ctx.fillText('CNT', size / 2, size / 2);
+            } else {
+                ctx.fillText(themeData.symbol, size / 2, size / 2);
+            }
+        }
+
+        // Generate initial icon
+        generateIcon();
+
+        // Update icon when controls change
+        ['iconText', 'bgColor', 'textColor', 'iconSize'].forEach(id => {
+            document.getElementById(id).addEventListener('change', generateIcon);
+            document.getElementById(id).addEventListener('input', generateIcon);
+        });
+    </script>
+</body>
+</html> 
